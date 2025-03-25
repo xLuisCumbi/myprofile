@@ -1,29 +1,63 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 
 // You can replace these with your own social links
 const socialLinks = [
-	{ name: 'Website', url: '#', icon: 'fa-solid fa-globe' },
-	{ name: 'X', url: '#', icon: 'fa-brands fa-x-twitter' },
-	{ name: 'Discord', url: '#', icon: 'fa-brands fa-discord' },
-	{ name: 'GitHub', url: '#', icon: 'fa-brands fa-github' },
+	{
+		name: "X",
+		url: "https://x.com/xLuisCumbi",
+		icon: "fa-brands fa-x-twitter",
+	},
+	{
+		name: "GitHub",
+		url: "https://github.com/xLuisCumbi",
+		icon: "fa-brands fa-github",
+	},
+	{
+		name: "Twitch",
+		url: "https://www.twitch.tv/xluiscumbi/",
+		icon: "fa-brands fa-twitch",
+	},
+	{
+		name: "YouTube",
+		url: "https://www.youtube.com/@xLuisCumbi",
+		icon: "fa-brands fa-youtube",
+	},
+	{ name: "Medium", url: "#", icon: "fa-brands fa-medium" },
+];
+
+const communityLinks = [
+	{ name: "Discord", url: "#", icon: "fa-brands fa-discord" },
+	{
+		name: "Telegram Channel",
+		url: "https://t.me/xcumbi",
+		icon: "fa-solid fa-bullhorn",
+	},
+	{
+		name: "Telegram Group",
+		url: "https://t.me/+XB-r8QLjDRc1NWYx",
+		icon: "fa-brands fa-telegram",
+	},
+	{ name: "Website", url: "cumbi.co", icon: "fa-solid fa-globe" },
 ];
 
 const categories = [
-	{ name: 'BRAND', link: '#' },
-	{ name: 'NFT', link: '#' },
-	{ name: 'TOKEN', link: '#' },
-	{ name: 'CONTENT CREATOR', link: '#' },
-	{ name: 'GAMING', link: '#' },
+	{ name: "BRAND", link: "#" },
+	{ name: "NFT", link: "#" },
+	{ name: "TOKEN", link: "#" },
+	{ name: "CONTENT CREATOR", link: "#" },
+	{ name: "GAMING", link: "#" },
 ];
 ---
 
-<Layout title="Your Name - Profile">
+<Layout title="xLuis Cumbi - Profile">
 	<main class="max-w-[900px] mx-auto px-4 py-8">
 		<!-- Hero Banner -->
-		<div class="relative w-full h-64 md:h-96 rounded-lg overflow-hidden mb-8">
+		<div
+			class="relative w-full h-64 md:h-96 rounded-lg overflow-hidden mb-8"
+		>
 			<img
-				src="https://via.placeholder.com/1920x400"
+				src="/images/banner/cumbi-banner.png"
 				alt="Profile Banner"
 				class="w-full h-full object-cover"
 			/>
@@ -32,24 +66,30 @@ const categories = [
 		<!-- Profile Section -->
 		<div class="relative -mt-20 mb-8">
 			<div class="flex flex-col items-center">
-				<div class="w-40 h-40 rounded-full overflow-hidden border-4 border-white dark:border-gray-800 bg-white dark:bg-gray-800">
+				<div
+					class="w-40 h-40 rounded-full overflow-hidden border-4 border-white dark:border-gray-800 bg-white dark:bg-gray-800"
+				>
 					<img
-						src="https://via.placeholder.com/160"
+						src="/images/profile/luis.svg"
 						alt="Profile Picture"
 						class="w-full h-full object-cover"
 					/>
 				</div>
-				<h1 class="text-3xl font-bold mt-4">Your Name</h1>
-				<p class="text-gray-600 dark:text-gray-400 mt-2">Your Tagline</p>
+				<h1 class="text-3xl font-bold mt-4">Luis</h1>
+				<p class="text-gray-600 dark:text-gray-400 mt-2">
+					Just another tech guy
+				</p>
 			</div>
 		</div>
 
 		<!-- Categories -->
-		<div class="flex flex-wrap justify-center gap-4 mb-8">
+		<div class="hidden flex flex-wrap justify-center gap-4 mb-8">
 			{
 				categories.map((category) => (
 					<a
 						href={category.link}
+						target="_blank"
+						rel="noopener noreferrer"
 						class="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full text-sm font-medium hover:bg-primary-100 dark:hover:bg-gray-700 transition-colors"
 					>
 						{category.name}
@@ -61,23 +101,62 @@ const categories = [
 		<!-- Description -->
 		<div class="max-w-2xl mx-auto text-center mb-12">
 			<p class="text-gray-600 dark:text-gray-400">
-				Your detailed description goes here. Make it engaging and informative, highlighting your key achievements and interests.
+				Web builder with 10+ years of experience. Founder of Cumbi and
+				Cumbiverse. Passionate about AI, gaming, Web3, and the future of
+				technology in LATAM. I speak and build around startups,
+				innovation, and digital culture.
 			</p>
 		</div>
 
 		<!-- Social Links -->
-		<div class="flex justify-center gap-6">
-			{
-				socialLinks.map((link) => (
-					<a
-						href={link.url}
-						class="w-12 h-12 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-primary-100 dark:hover:bg-gray-700 transition-colors"
-						title={link.name}
-					>
-						<i class={link.icon} />
-					</a>
-				))
-			}
+		<div class="flex flex-col items-center gap-8">
+			<!-- Social Profiles -->
+			<div class="flex flex-col items-center gap-4">
+				<h2
+					class="text-xl font-semibold text-gray-800 dark:text-gray-200"
+				>
+					Social Profiles
+				</h2>
+				<div class="flex flex-wrap justify-center gap-4 sm:gap-7">
+					{
+						socialLinks.map((link) => (
+							<a
+								href={link.url}
+								target="_blank"
+								rel="noopener noreferrer"
+								class="w-[3rem] h-[3rem] sm:w-[3.6rem] sm:h-[3.6rem] flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-primary-100 dark:hover:bg-gray-700 transition-all duration-300 ease-in-out transform hover:scale-125"
+								title={link.name}
+							>
+								<i class={`${link.icon} text-xl sm:text-2xl`} />
+							</a>
+						))
+					}
+				</div>
+			</div>
+
+			<!-- Community Links -->
+			<div class="flex flex-col items-center gap-4">
+				<h2
+					class="text-xl font-semibold text-gray-800 dark:text-gray-200"
+				>
+					Community
+				</h2>
+				<div class="flex flex-wrap justify-center gap-4 sm:gap-7">
+					{
+						communityLinks.map((link) => (
+							<a
+								href={link.url}
+								target="_blank"
+								rel="noopener noreferrer"
+								class="w-[3rem] h-[3rem] sm:w-[3.6rem] sm:h-[3.6rem] flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-primary-100 dark:hover:bg-gray-700 transition-all duration-300 ease-in-out transform hover:scale-125"
+								title={link.name}
+							>
+								<i class={`${link.icon} text-xl sm:text-2xl`} />
+							</a>
+						))
+					}
+				</div>
+			</div>
 		</div>
 
 		<!-- Featured Projects/Content -->
@@ -91,9 +170,12 @@ const categories = [
 							class="w-full h-48 object-cover"
 						/>
 						<div class="p-6">
-							<h3 class="text-xl font-semibold mb-2">Project Title {item}</h3>
+							<h3 class="text-xl font-semibold mb-2">
+								Project Title {item}
+							</h3>
 							<p class="text-gray-600 dark:text-gray-400">
-								Brief description of the project or content piece.
+								Brief description of the project or content
+								piece.
 							</p>
 						</div>
 					</div>
