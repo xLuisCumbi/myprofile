@@ -1,6 +1,75 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
+// Basic profile information
+const profileInfo = {
+	name: "Luis",
+	nickname: "@xLuisCumbi",
+	tagline: "Tech, Investments & Entrepreneurship",
+	description:
+		"I'm a web builder with 10+ years of experience. Sr Software Developer with strong knowledge in web development. Founder of Cumbi community. Passionate about investing in stocks, crypto, and real businesses. I speak and build around startups, innovation, and digital culture in LATAM.",
+};
+
+// Theme settings
+const theme = {
+	primaryColor: "from-blue-500 to-purple-500",
+	secondaryColor: "blue-600",
+	accentGradient: "from-blue-500 to-purple-600",
+	headingClass:
+		"text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500 font-bold",
+	sectionHeadingClass: "text-gray-800 dark:text-white font-bold",
+};
+
+// Profile assets
+const profileAssets = {
+	banner: "/images/banner/cumbi-banner.png",
+	profile: "/images/profile/luis.svg",
+};
+
+// Ventures and investments
+const ventures = [
+	{
+		name: "500 Global",
+		role: "Limited Partner",
+		description: "VC firm investing in startups worldwide",
+		url: "https://500.co/",
+		logo: "/images/logos/500global.png",
+	},
+	{
+		name: "Isla de Pascua",
+		role: "Investor",
+		description: "Hostel in Jardín, Antioquia",
+		url: "https://isladepascua.co/",
+		logo: "/images/logos/isladepascua.png",
+	},
+	{
+		name: "Reset Social Club",
+		role: "Founder",
+		description: "Social club for sports and wellness",
+		url: "https://resetsocial.club/",
+		logo: "/images/logos/resetsocial.png",
+	},
+];
+
+// Projects data
+const projects = [
+	{
+		title: "Project Title 1",
+		description: "Brief description of the project or content piece.",
+		image: "https://via.placeholder.com/400x250",
+	},
+	{
+		title: "Project Title 2",
+		description: "Brief description of the project or content piece.",
+		image: "https://via.placeholder.com/400x250",
+	},
+	{
+		title: "Project Title 3",
+		description: "Brief description of the project or content piece.",
+		image: "https://via.placeholder.com/400x250",
+	},
+];
+
 // You can replace these with your own social links
 const socialLinks = [
 	{
@@ -19,15 +88,26 @@ const socialLinks = [
 		icon: "fa-brands fa-twitch",
 	},
 	{
+		name: "Kick",
+		url: "https://kick.com/xluiscumbi",
+		icon: "custom",
+		customIcon: "/images/socials/kick.svg",
+	},
+	{
 		name: "YouTube",
 		url: "https://www.youtube.com/@xLuisCumbi",
 		icon: "fa-brands fa-youtube",
+	},
+	{
+		name: "LinkedIn",
+		url: "https://www.linkedin.com/in/jrluismi/",
+		icon: "fa-brands fa-linkedin",
 	},
 	{ name: "Medium", url: "#", icon: "fa-brands fa-medium" },
 ];
 
 const communityLinks = [
-	{ name: "Discord", url: "#", icon: "fa-brands fa-discord" },
+	//{ name: "Discord", url: "#", icon: "fa-brands fa-discord" },
 	{
 		name: "Telegram Channel",
 		url: "https://t.me/xcumbi",
@@ -38,7 +118,7 @@ const communityLinks = [
 		url: "https://t.me/+XB-r8QLjDRc1NWYx",
 		icon: "fa-brands fa-telegram",
 	},
-	{ name: "Website", url: "cumbi.co", icon: "fa-solid fa-globe" },
+	// { name: "Website", url: "cumbi.co", icon: "fa-solid fa-globe" },
 ];
 
 const categories = [
@@ -50,14 +130,14 @@ const categories = [
 ];
 ---
 
-<Layout title="xLuis Cumbi - Profile">
+<Layout title={`${profileInfo.nickname} - Profile`}>
 	<main class="max-w-[900px] mx-auto px-4 py-8">
 		<!-- Hero Banner -->
 		<div
 			class="relative w-full h-64 md:h-96 rounded-lg overflow-hidden mb-8"
 		>
 			<img
-				src="/images/banner/cumbi-banner.png"
+				src={profileAssets.banner}
 				alt="Profile Banner"
 				class="w-full h-full object-cover"
 			/>
@@ -67,17 +147,22 @@ const categories = [
 		<div class="relative -mt-20 mb-8">
 			<div class="flex flex-col items-center">
 				<div
-					class="w-40 h-40 rounded-full overflow-hidden border-4 border-white dark:border-gray-800 bg-white dark:bg-gray-800"
+					class="w-40 h-40 rounded-full overflow-hidden border-4 border-white dark:border-gray-800 bg-white dark:bg-gray-800 shadow-lg"
 				>
 					<img
-						src="/images/profile/luis.svg"
+						src={profileAssets.profile}
 						alt="Profile Picture"
 						class="w-full h-full object-cover"
 					/>
 				</div>
-				<h1 class="text-3xl font-bold mt-4">Luis</h1>
+				<h1 class={`text-3xl font-bold mt-4 ${theme.headingClass}`}>
+					{profileInfo.name}
+				</h1>
+				<p class="text-sm text-gray-500 dark:text-gray-500 mt-1">
+					({profileInfo.nickname})
+				</p>
 				<p class="text-gray-600 dark:text-gray-400 mt-2">
-					Just another tech guy
+					{profileInfo.tagline}
 				</p>
 			</div>
 		</div>
@@ -100,23 +185,27 @@ const categories = [
 
 		<!-- Description -->
 		<div class="max-w-2xl mx-auto text-center mb-12">
-			<p class="text-gray-600 dark:text-gray-400">
-				Web builder with 10+ years of experience. Founder of Cumbi and
-				Cumbiverse. Passionate about AI, gaming, Web3, and the future of
-				technology in LATAM. I speak and build around startups,
-				innovation, and digital culture.
-			</p>
+			<p
+				class="text-gray-600 dark:text-gray-400"
+				set:html={profileInfo.description}
+			/>
 		</div>
 
 		<!-- Social Links -->
-		<div class="flex flex-col items-center gap-8">
+		<div class="flex flex-col items-center mb-16">
 			<!-- Social Profiles -->
-			<div class="flex flex-col items-center gap-4">
+			<div>
 				<h2
-					class="text-xl font-semibold text-gray-800 dark:text-gray-200"
+					class={`text-2xl text-center mb-3 ${theme.sectionHeadingClass}`}
 				>
 					Social Profiles
 				</h2>
+				<p
+					class="text-gray-600 dark:text-gray-400 text-center mb-6 max-w-md mx-auto"
+				>
+					Connect with me on various platforms. I stream on Twitch and
+					Kick, share content on YouTube, and post updates on X.
+				</p>
 				<div class="flex flex-wrap justify-center gap-4 sm:gap-7">
 					{
 						socialLinks.map((link) => (
@@ -124,23 +213,52 @@ const categories = [
 								href={link.url}
 								target="_blank"
 								rel="noopener noreferrer"
-								class="w-[3rem] h-[3rem] sm:w-[3.6rem] sm:h-[3.6rem] flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-primary-100 dark:hover:bg-gray-700 transition-all duration-300 ease-in-out transform hover:scale-125"
-								title={link.name}
+								class={`w-[3rem] h-[3rem] sm:w-[3.6rem] sm:h-[3.6rem] flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gradient-to-r ${theme.primaryColor} hover:text-white transition-all duration-300 ease-in-out transform hover:scale-125 relative group ${link.name === "Medium" ? "cursor-not-allowed opacity-50" : ""}`}
+								title={
+									link.name === "Medium"
+										? "Coming Soon!"
+										: link.name
+								}
 							>
-								<i class={`${link.icon} text-xl sm:text-2xl`} />
+								{link.icon === "custom" ? (
+									<img
+										src={link.customIcon}
+										alt={link.name}
+										class="w-[1.5rem] h-[1.5rem] sm:w-[2rem] sm:h-[2rem]"
+									/>
+								) : (
+									<i
+										class={`${link.icon} text-xl sm:text-2xl`}
+									/>
+								)}
+								<span
+									class={`absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-gradient-to-r ${theme.primaryColor} text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap`}
+								>
+									{link.name === "Medium"
+										? "Coming Soon!"
+										: link.name}
+								</span>
 							</a>
 						))
 					}
 				</div>
 			</div>
+		</div>
 
-			<!-- Community Links -->
-			<div class="flex flex-col items-center gap-4">
+		<!-- Community Links -->
+		<div class="flex flex-col items-center mb-16">
+			<div>
 				<h2
-					class="text-xl font-semibold text-gray-800 dark:text-gray-200"
+					class={`text-2xl text-center mb-3 ${theme.sectionHeadingClass}`}
 				>
 					Community
 				</h2>
+				<p
+					class="text-gray-600 dark:text-gray-400 text-center mb-6 max-w-md mx-auto"
+				>
+					Join my Telegram communities to stay updated with the latest
+					news and connect with like-minded people.
+				</p>
 				<div class="flex flex-wrap justify-center gap-4 sm:gap-7">
 					{
 						communityLinks.map((link) => (
@@ -148,10 +266,64 @@ const categories = [
 								href={link.url}
 								target="_blank"
 								rel="noopener noreferrer"
-								class="w-[3rem] h-[3rem] sm:w-[3.6rem] sm:h-[3.6rem] flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-primary-100 dark:hover:bg-gray-700 transition-all duration-300 ease-in-out transform hover:scale-125"
+								class={`w-[3rem] h-[3rem] sm:w-[3.6rem] sm:h-[3.6rem] flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gradient-to-r ${theme.primaryColor} hover:text-white transition-all duration-300 ease-in-out transform hover:scale-125 relative group`}
 								title={link.name}
 							>
 								<i class={`${link.icon} text-xl sm:text-2xl`} />
+								<span
+									class={`absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-gradient-to-r ${theme.primaryColor} text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap`}
+								>
+									{link.name}
+								</span>
+							</a>
+						))
+					}
+				</div>
+			</div>
+		</div>
+
+		<!-- Ventures & Investments -->
+		<div class="flex flex-col items-center mb-12">
+			<div>
+				<h2
+					class={`text-2xl text-center mb-3 ${theme.sectionHeadingClass}`}
+				>
+					Ventures & Investments
+				</h2>
+				<p
+					class="text-gray-600 dark:text-gray-400 text-center mb-6 max-w-md mx-auto"
+				>
+					My investment portfolio includes startups, hospitality, and
+					lifestyle businesses that align with my vision for the
+					future.
+				</p>
+				<div
+					class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto"
+				>
+					{
+						ventures.map((venture) => (
+							<a
+								href={venture.url}
+								target="_blank"
+								rel="noopener noreferrer"
+								class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 flex flex-col items-center text-center"
+							>
+								<div class="w-24 h-24 rounded-full overflow-hidden mb-4">
+									<img
+										src={venture.logo}
+										alt={venture.name}
+										class="w-full h-full object-cover"
+									/>
+								</div>
+								<h3 class="text-lg font-semibold mb-1">
+									{venture.name}
+								</h3>
+								<p class="text-sm text-blue-500 mb-2">
+									{venture.role}
+								</p>
+								<p class="text-gray-600 dark:text-gray-400 text-sm">
+									{venture.description}
+								</p>
 							</a>
 						))
 					}
@@ -160,27 +332,58 @@ const categories = [
 		</div>
 
 		<!-- Featured Projects/Content -->
-		<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-			{
-				[1, 2, 3].map((item) => (
-					<div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-						<img
-							src={`https://via.placeholder.com/400x250`}
-							alt={`Project ${item}`}
-							class="w-full h-48 object-cover"
-						/>
-						<div class="p-6">
-							<h3 class="text-xl font-semibold mb-2">
-								Project Title {item}
-							</h3>
-							<p class="text-gray-600 dark:text-gray-400">
-								Brief description of the project or content
-								piece.
-							</p>
-						</div>
-					</div>
-				))
-			}
-		</div>
+		<!-- <div class="flex flex-col items-center mt-12">
+			<div>
+				<h2
+					class={`text-2xl text-center mb-6 ${theme.sectionHeadingClass}`}
+				>
+					Featured Projects
+				</h2>
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+					{
+						projects.map((project) => (
+							<div
+								class={`bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-transparent hover:border-${theme.secondaryColor}`}
+							>
+								<div class="relative">
+									<img
+										src={project.image}
+										alt={project.title}
+										class="w-full h-48 object-cover"
+									/>
+									<div
+										class={`absolute inset-0 bg-gradient-to-t ${theme.accentGradient} opacity-0 hover:opacity-50 transition-opacity`}
+									></div>
+								</div>
+								<div class="p-6">
+									<h3 class="text-xl font-semibold mb-2">
+										{project.title}
+									</h3>
+									<p class="text-gray-600 dark:text-gray-400">
+										{project.description}
+									</p>
+								</div>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</div> -->
 	</main>
+	<footer class="mt-12 py-6 border-t border-gray-200 dark:border-gray-800">
+		<div
+			class="max-w-[900px] mx-auto px-4 text-center text-sm text-gray-600 dark:text-gray-400"
+		>
+			<p>
+				&copy; {new Date().getFullYear()} Luis (xLuisCumbi). All rights reserved.
+			</p>
+			<p class="mt-2">
+				<a
+					href="/privacy"
+					class="underline hover:text-blue-600 dark:hover:text-blue-400"
+					>Privacy Policy</a
+				>
+			</p>
+		</div>
+	</footer>
 </Layout>

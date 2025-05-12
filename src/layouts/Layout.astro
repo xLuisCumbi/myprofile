@@ -1,30 +1,94 @@
 ---
-import '../styles/global.css';
-import DarkModeToggle from '../components/DarkModeToggle.astro';
+import "../styles/global.css";
+import DarkModeToggle from "../components/DarkModeToggle.astro";
 
 interface Props {
 	title: string;
 	description?: string;
+	image?: string;
+	canonicalURL?: URL | string;
 }
 
-const { title, description = "Personal website built with Astro" } = Astro.props;
+const {
+	title,
+	description = "Web developer, investor, and founder based in LATAM. Luis shares insights about tech, investments and entrepreneurship.",
+	image = "/images/profile/luis.svg",
+	canonicalURL = Astro.url,
+} = Astro.props;
+
+// Construir la URL completa para las etiquetas Open Graph
+const site = Astro.site || "https://luis.cumbi.co/";
+const imageURL = new URL(image, site).toString();
 ---
 
 <!doctype html>
 <html lang="en" class="dark">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content={description} />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<!-- SEO Primary Meta Tags -->
 		<title>{title}</title>
+		<meta name="title" content={title} />
+		<meta name="description" content={description} />
+		<meta name="author" content="Luis (xLuisCumbi)" />
+		<meta
+			name="keywords"
+			content="web development, investments, startups, tech, LATAM, Luis, xLuisCumbi, entrepreneurship"
+		/>
+
+		<!-- Canonical URL -->
+		<link rel="canonical" href={canonicalURL} />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={imageURL} />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={canonicalURL} />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={imageURL} />
+
+		<!-- Favicon -->
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="/apple-touch-icon.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="/favicon-32x32.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="16x16"
+			href="/favicon-16x16.png"
+		/>
+
+		<!-- Generator tag (safe to keep) -->
+		<meta name="generator" content={Astro.generator} />
+
+		<!-- Fonts and Styles -->
 		<link
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 		/>
+
+		<!-- Preconnect to external domains -->
+		<link rel="preconnect" href="https://cdnjs.cloudflare.com" />
 	</head>
-	<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen">
+	<body
+		class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen"
+	>
 		<DarkModeToggle />
 		<slot />
 	</body>
@@ -32,10 +96,10 @@ const { title, description = "Personal website built with Astro" } = Astro.props
 
 <script>
 	// Check if user prefers dark mode
-	if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-		document.documentElement.classList.add('dark');
+	if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+		document.documentElement.classList.add("dark");
 	} else {
-		document.documentElement.classList.remove('dark');
+		document.documentElement.classList.remove("dark");
 	}
 </script>
 

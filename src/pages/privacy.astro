@@ -1,0 +1,152 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+// Theme settings that match the main page
+const theme = {
+    primaryColor: "from-blue-500 to-purple-500",
+    secondaryColor: "blue-600",
+    accentGradient: "from-blue-500 to-purple-600",
+    headingClass:
+        "text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500 font-bold",
+};
+
+const currentDate = new Date().toISOString().split("T")[0];
+---
+
+<Layout
+    title="Privacy Policy - Luis (xLuisCumbi)"
+    description="Privacy policy for Luis (xLuisCumbi) personal website, explaining our minimal data handling approach."
+>
+    <main class="max-w-[900px] mx-auto px-4 py-8">
+        <h1 class={`text-4xl mb-2 text-center ${theme.headingClass}`}>
+            Privacy Policy
+        </h1>
+        <p class="text-center text-gray-600 dark:text-gray-400 mb-8">
+            Your privacy is important.
+        </p>
+
+        <div class="prose prose-lg dark:prose-invert mx-auto">
+            <p class="text-right italic">
+                <strong>Last Updated:</strong>
+                {currentDate}
+            </p>
+
+            <h2
+                class="text-2xl font-bold mt-8 mb-4 text-gray-800 dark:text-white"
+            >
+                1. Introduction
+            </h2>
+            <p>
+                This Privacy Policy explains how the personal website
+                luis.cumbi.co (the "Site") handles privacy considerations. This
+                is a simple, static website that does not actively collect,
+                store, or process personal information from visitors.
+            </p>
+
+            <h2
+                class="text-2xl font-bold mt-8 mb-4 text-gray-800 dark:text-white"
+            >
+                2. Information Collection: What We Don't Collect
+            </h2>
+            <p>As a static website, we do not:</p>
+            <ul class="list-disc pl-6 mt-2 mb-4">
+                <li>Use contact or newsletter forms</li>
+                <li>Process or store any personal information</li>
+                <li>Use user accounts or authentication</li>
+                <li>Sell or share visitor information with third parties</li>
+                <li>Track individual user behavior</li>
+                <li>Use cookies for tracking purposes</li>
+            </ul>
+
+            <h2
+                class="text-2xl font-bold mt-8 mb-4 text-gray-800 dark:text-white"
+            >
+                3. Hosting Provider and Server Logs
+            </h2>
+            <p>
+                This site is hosted on AWS Amplify. Like most hosting providers,
+                AWS may collect standard server logs including:
+            </p>
+            <ul class="list-disc pl-6 mt-2 mb-4">
+                <li>IP addresses</li>
+                <li>Browser type</li>
+                <li>Access times</li>
+                <li>Pages visited</li>
+            </ul>
+            <p>
+                This information is processed by AWS according to their privacy
+                policy and data processing terms. This information is not
+                accessed or used by us for any purpose.
+            </p>
+
+            <h2
+                class="text-2xl font-bold mt-8 mb-4 text-gray-800 dark:text-white"
+            >
+                4. External Links
+            </h2>
+            <p>
+                This website contains links to external sites, including social
+                media platforms and project websites. These sites have their own
+                privacy policies, and we are not responsible for their
+                practices. We encourage you to read the privacy statements of
+                any external sites you visit through links on our website.
+            </p>
+
+            <h2
+                class="text-2xl font-bold mt-8 mb-4 text-gray-800 dark:text-white"
+            >
+                5. Local Storage
+            </h2>
+            <p>
+                This site uses local storage only to remember your preference
+                for dark or light mode. This information stays in your browser
+                and is not transmitted to us or any third parties.
+            </p>
+
+            <h2
+                class="text-2xl font-bold mt-8 mb-4 text-gray-800 dark:text-white"
+            >
+                6. Your Rights
+            </h2>
+            <p>
+                Since we don't collect personal data, there is generally no
+                personal information for you to access, correct, or delete.
+                However, if you believe that any information related to you is
+                stored on our website, feel free to contact us, and we will
+                address your concern.
+            </p>
+
+            <h2
+                class="text-2xl font-bold mt-8 mb-4 text-gray-800 dark:text-white"
+            >
+                7. Changes to This Privacy Policy
+            </h2>
+            <p>
+                We may update this Privacy Policy from time to time to reflect
+                changes in technology, law, or our practices. We will notify you
+                of any material changes by posting the updated Privacy Policy on
+                this page with a new effective date.
+            </p>
+
+            <h2
+                class="text-2xl font-bold mt-8 mb-4 text-gray-800 dark:text-white"
+            >
+                8. Contact
+            </h2>
+            <p>
+                If you have any questions or concerns about this Privacy Policy,
+                you can contact me through any of the social media platforms
+                listed on the homepage.
+            </p>
+        </div>
+
+        <div class="mt-12 text-center">
+            <a
+                href="/"
+                class={`inline-block px-6 py-3 text-white rounded-lg transition-colors bg-gradient-to-r ${theme.primaryColor} hover:opacity-90`}
+            >
+                Back to Home
+            </a>
+        </div>
+    </main>
+</Layout>
